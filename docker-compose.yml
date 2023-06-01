@@ -1,0 +1,50 @@
+version: "3.5"
+
+services:
+
+  modelscope:
+    container_name: modelscope
+    restart: always
+    build:
+      context: ./etc
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8800"]
+    working_dir: /var/www
+    environment:
+      - TZ=PRC
+    volumes:
+      - ./mnt:/mnt
+      - ./www:/var/www
+    expose:
+     - 8800
+    ports:
+     - "8800:8800"
+    network_mode: "bridge"
+    extra_hosts:
+      - "dockerhost:172.17.0.1"
+
+#  modelscope-gpu:
+#    container_name: modelscope-gpu
+#    restart: always
+#    build:
+#      context: ./etc
+#      dockerfile: Dockerfile_GPU
+#    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8800"]
+#    environment:
+#      - TZ=PRC
+#    volumes:
+#      - ./mnt:/mnt
+#      - ./www:/var/www
+#    expose:
+#     - 8800
+#    ports:
+#     - "8800:8800"
+#    network_mode: "bridge"
+#    extra_hosts:
+#      - "dockerhost:172.17.0.1"
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - driver: nvidia
+#              count: all
+#              capabilities: [gpu]
