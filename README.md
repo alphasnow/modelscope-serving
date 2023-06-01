@@ -1,6 +1,8 @@
 # ModelScope Serving
 Use the following command to easily start ModelScope Serving
 ```bash
+git clone https://github.com/alphasnow/modelscope-serving.git
+cd modelscope-serving
 docker-compose up -f docker-compose.yml -d
 ```
 
