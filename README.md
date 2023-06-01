@@ -4,7 +4,7 @@ Use the following command to easily start ModelScope Serving
 docker-compose up -f docker-compose.yml -d
 ```
 
-Example
+## Example
 ```bash
 # request
 curl 'http://127.0.0.1:8800/api/predict/image-cartoon' \
